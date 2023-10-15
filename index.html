@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1>Temperature Converter</h1>
+
+    <form>
+        <label for="temperature">Temperature:</label>
+        <input type="number" id="temperature" name="temperature" placeholder="Enter temperature" required>
+        
+        <label for="unit">Unit:</label>
+        <select id="unit" name="unit">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+            <option value="kelvin">Kelvin</option>
+        </select>
+
+        <input type="button" value="Convert" onclick="convertTemperature()">
+    </form>
+
+    <p>Result:</p>
+    <div id="result"></div>
+
+    <script>
+        function convertTemperature() {
+            var temperature = parseFloat(document.getElementById("temperature").value);
+            var unit = document.getElementById("unit").value;
+            var resultElement = document.getElementById("result");
+
+            if (unit === "celsius") {
+                var fahrenheit = (temperature * 9/5) + 32;
+                var kelvin = temperature + 273.15;
+                resultElement.innerHTML = "Fahrenheit: " + fahrenheit.toFixed(2) + "°F<br>";
+                resultElement.innerHTML += "Kelvin: " + kelvin.toFixed(2) + "K";
+            } else if (unit === "fahrenheit") {
+                var celsius = (temperature - 32) * 5/9;
+                var kelvin = (temperature - 32) * 5/9 + 273.15;
+                resultElement.innerHTML = "Celsius: " + celsius.toFixed(2) + "°C<br>";
+                resultElement.innerHTML += "Kelvin: " + kelvin.toFixed(2) + "K";
+            } else if (unit === "kelvin") {
+                var celsius = temperature - 273.15;
+                var fahrenheit = (temperature - 273.15) * 9/5 + 32;
+                resultElement.innerHTML = "Celsius: " + celsius.toFixed(2) + "°C<br>";
+                resultElement.innerHTML += "Fahrenheit: " + fahrenheit.toFixed(2) + "°F";
+            }
+        }
+    </script>
+</body>
+</html>
